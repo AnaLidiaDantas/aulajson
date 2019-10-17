@@ -22,14 +22,16 @@ $(document).ready(function(){
     function insereLinha(id, nome, site){
 
         let linha = '<tr>' +
-                        '<td class=\'col-xs-2\'>' +
-                            '<img src=\'imagens/editar.jpeg\'/>' + 
-                            'img src=\'imagens/excluir.jpeg\' />' +
+                        '<td class="col-xs-2">' +
+                            '<a href="#" class="action_edit" value="' + id +
+                            '"><img src="imagens/editar.jpeg" /></a>' + 
+                            'a href="#" class="action_delet" value="' + id +
+                            '"><img src="imagens/excluir.jpeg" /></a>' +
                         '</td>' +
-                        '<td class=\col-xs-4>\'>' + 
+                        '<td class=\ 'col-xs-4>\'>' + 
                             nome + 
                         '</td>' +
-                        '<td class=\'col-xs-6\'>' + 
+                        '<td class=\ 'col-xs-6\'>' + 
                             site +
                         '</td>' +
                     '</tr>';

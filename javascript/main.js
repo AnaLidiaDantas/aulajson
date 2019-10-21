@@ -57,7 +57,7 @@ function formToJSON(){
     return JSON.stringify({
         "id": $('#idHidden').val(),
         "nome": $('#nomeId').val(),
-        "site": $('#siteId').val()
+        "site": $('#emailId').val()
        
     });
 }

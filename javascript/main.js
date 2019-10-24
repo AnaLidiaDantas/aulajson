@@ -1,4 +1,4 @@
-let urlAPI = 'https://gilsonpolito-api.herokuapp.com/alunos';
+let urlAPI = 'https://gilsonpolito-api.herokuapp.com/alunos/';
 $(document).ready(function(){
 
     $.ajax({
@@ -10,6 +10,7 @@ $(document).ready(function(){
             $.each(data, function(index, itemData){
                     insereLinha(itemData.id, itemData.nome, itemData.site);
             });
+            handler();
         },
         error: function(jqXHR, textStatus, errorThrown){
             alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
@@ -22,7 +23,7 @@ function insereLinha(id, nome, site){
     let linha = '<tr>' +
                     '<td class="col-xs-2">' + 
                         '<a href="#" class="action_edit" value="'+ id +'"><img src="imagens/editar.jpeg" /></a>' +
-                        '<a href="#" class="action_edit" value="'+ id +'"><img src="imagens/excluir.jpeg" /></a>' +
+                        '<a href="#" class="action_delete" value="'+ id +'"><img src="imagens/excluir.jpeg" /></a>' +
                     '</td>' +
                     '<td class="col-xs-4">' + 
                         nome +
@@ -45,13 +46,36 @@ $('#add-to-list').on('click', (evento) => {
         dataType: 'json',
         data: formToJSON(),
         success: function(data, textStatus, jqXHR){
-            insereLinha(data.id, data.nome, data.site)
+            insereLinha(data.id, data.nome, data.site);
+            handler ();
         },
         error: function(jqXHR, textStatus, errorThrown){
             alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
         }
     })
-})
+});
+function handler(){
+    $('.action_delete').each(function(){
+        $(this).click(function(evento){
+            evento.stopImmediatePropagation();
+            evento.preventDefault();
+            let tr = $(this).parent().parent()
+            if(confirm('Deseja remover o aluno?')){
+                $.ajax({
+                    type: 'DELETE',
+                    contentType:'application/json',
+                    url: urlAPI + $(this).attr('value'),
+                    success: function(jqXHR, textStatus, errorThrow){
+                        tr.remove();
+                    },
+                    error: function(jqXHR, textStatus,errorThrow){
+                        alert('Status: '+ textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
+                    }
+                });
+            }
+        });
+    });
+}
 
 function formToJSON(){
     return JSON.stringify({

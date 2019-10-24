@@ -75,6 +75,26 @@ function handler(){
             }
         });
     });
+    $('.action_edit').each(function(){
+        $(this).click(function(evento){
+            evento.preventDefault();
+            $.ajax({
+                type:'GET',
+                contentType:'application/json',
+                url: urlAPI + $(this).attr('value'),
+                success: function(data){
+                    $('#idHidden').val(data.id);
+                    $('#nomeId').val(data.nome);
+                    $('#emailId').val(data.site);
+                    
+                },
+                error: function(jqXHR, textStatus,errorThrow){
+                    alert('Status: '+ textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
+                }
+
+            });
+        });
+    });
 }
 
 function formToJSON(){

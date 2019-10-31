@@ -51,6 +51,8 @@ $('#update-to-list').on('click', (evento) =>{
                     $(this).find('#siteIdTb').html($('emailId').val());
 
                     $('#formAluno').get(0).reset();
+                    $('#add-to-list').removeClass('d-none');
+                    $('#update-to-list').addClass('d-none');
                 }
             })
         },
@@ -112,7 +114,9 @@ function handler(){
                     $('#idHidden').val(data.id);
                     $('#nomeId').val(data.nome);
                     $('#emailId').val(data.site);
-                    
+
+                    $('#add-to-list').addClass('d-none');
+                    $('#update-to-list').removeClass('d-none');
                 },
                 error: function(jqXHR, textStatus,errorThrow){
                     alert('Status: '+ textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);

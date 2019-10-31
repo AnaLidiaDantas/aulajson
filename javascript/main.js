@@ -48,7 +48,7 @@ $('#update-to-list').on('click', (evento) =>{
             $('#alunoTable tr').each(function(){
                 if($(this).find('.action_edit').attr('value')== $('#idHidden').val()){
                     $(this).find('#nameIdTb').html($('#nomeId').val());
-                    $(this).find('#siteIdTb').html($('emailId').val());
+                    $(this).find('#siteIdTb').html($('#emailId').val());
 
                     $('#formAluno').get(0).reset();
                     $('#add-to-list').removeClass('d-none');
@@ -114,7 +114,8 @@ function handler(){
                     $('#idHidden').val(data.id);
                     $('#nomeId').val(data.nome);
                     $('#emailId').val(data.site);
-
+                    
+                   /* $('#formAluno').get(0).reset();*/
                     $('#add-to-list').addClass('d-none');
                     $('#update-to-list').removeClass('d-none');
                 },

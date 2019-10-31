@@ -25,16 +25,40 @@ function insereLinha(id, nome, site){
                         '<a href="#" class="action_edit" value="'+ id +'"><img src="imagens/editar.jpeg" /></a>' +
                         '<a href="#" class="action_delete" value="'+ id +'"><img src="imagens/excluir.jpeg" /></a>' +
                     '</td>' +
-                    '<td class="col-xs-4">' + 
+                    '<td id=\'nameIdTb\' class="col-xs-4">' + 
                         nome +
                     '</td>' + 
-                    '<td class="col-xs-6">' + 
+                    '<td id=\'siteIdTb\' class="col-xs-6">' + 
                         site +
                     '</td>' +
                 '</tr>';
                 
     $('#alunoTable').append(linha);    
 }
+
+$('#update-to-list').on('click', (evento) =>{
+    evento.preventDefault();
+    $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: urlAPI,
+        dataType: 'json',
+        data: formToJSON(),
+        success: function(){
+            $('#alunoTable tr').each(function(){
+                if($(this).find('.action_edit').attr('value')== $('#idHidden').val()){
+                    $(this).find('#nameIdTb').html($('#nomeId').val());
+                    $(this).find('#siteIdTb').html($('emailId').val());
+
+                    $('#formAluno').get(0).reset();
+                }
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
+        }
+    });
+});
 
 $('#add-to-list').on('click', (evento) => {
     evento.preventDefault();
@@ -54,6 +78,7 @@ $('#add-to-list').on('click', (evento) => {
         }
     })
 });
+
 function handler(){
     $('.action_delete').each(function(){
         $(this).click(function(evento){
@@ -75,6 +100,7 @@ function handler(){
             }
         });
     });
+
     $('.action_edit').each(function(){
         $(this).click(function(evento){
             evento.preventDefault();

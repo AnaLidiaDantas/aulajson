@@ -1,6 +1,7 @@
-# aulajson
+﻿# aulajson
 Primeiro contato com JavaScript
 
-Acrescentar Endereço e Telefone
+Acrescentar Endereço, Telefone e Nota
+Nota deve ser inserido após nome
 Alterar para site os campos que estiverem com email
-Adcionar campos no HTML e fazer as manipulações dos novos campos no JS
+Adicionar campos no HTML e fazer as manipulações dos novos campos no JS

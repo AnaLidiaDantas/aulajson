@@ -10,6 +10,9 @@
             height: 250px;
             overflow-y: auto;
         }
+        #linha{
+            padding-right: 500px;
+        }
     </style>
 </head>
 
@@ -17,6 +20,7 @@
     <div class="container">
         <h1>Lista de Alunos</h1>
         <form id="formAluno">
+            <div id="linha">
             <input type="hidden" id="idHidden" value="" />
             <div class="form-group">
                 <label for="nomeId" class="control-label">Nome</label>
@@ -42,6 +46,7 @@
                 <button id="add-to-list" type="submit" class="btn btn-primary">Adicionar a lista</button>
                 <button id="update-to-list" type="submit" class="btn btn-primary d-none">Atualizar a lista</button>
             </div>
+        </div>
         </form>
         <div id="alunoList">
             <table class="table-striped" id="alunoTable">

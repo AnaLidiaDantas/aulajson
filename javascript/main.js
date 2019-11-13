@@ -22,8 +22,8 @@ $(document).ready(function(){
 function insereLinha(id, nome, nota, site, endereco, telefone){
     let linha = '<tr>' +
                     '<td class="col-xs-2">' + 
-                        '<a href="#" class="action_edit" value="'+ id +'"><img src="imagens/editar.jpeg" /></a>' +
-                        '<a href="#" class="action_delete" value="'+ id +'"><img src="imagens/excluir.jpeg" /></a>' +
+                        '<a href="#" class="action_edit" value="'+ id +'"><img src="imagens/editar.png" width="20" height="20" /></a>' +
+                        '<a href="#" class="action_delete" value="'+ id +'"><img src="imagens/excluir.png" width="20" height="20" /></a>' +
                     '</td>' +
                     '<td id=\'nomeIdTb\' class="col-xs-4">' + 
                         nome +

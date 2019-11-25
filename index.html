@@ -26,7 +26,7 @@
         #endereco{
             width: 465px;
         }
-        #corpo{
+        #corpo{ 
             background-color: #FFDAB9;
         }
         .form-group{
@@ -44,28 +44,33 @@
 <body id="corpo">
     <div class="container">
         <h1>Lista de Alunos</h1>
-        <form id="formAluno">
+        <form id="formAluno" data-toggle="validator" role="form">
             <div id="linha">
             <input type="hidden" id="idHidden" value="" />
             <p><div class="form-group" id="nome">
                 <label for="nomeId" class="control-label">Nome</label>
-                <input id="corpo" id="nomeId" placeholder="Digite o nome" class="form-control" type="text"/>
+                <input id="nomeId" placeholder="Digite o nome" class="form-control" type="text" required/>
+                <div class="help-block with-errors"></div>
             </div>
             <div class="form-group" id="nota">
                 <label for="notaId" class="control-label">Nota</label>
-                <input id="corpo" id="notaId" placeholder="Nota" class="form-control" type="number" />
+                <input id="notaId" placeholder="Nota" class="form-control" type="number" required/>
+                <div class="help-block with-errors"></div>
             </div></p>
             <p><div class="form-group" id="site">
                 <label for="siteId" class="control-label">Site</label>
-                <input id="corpo" id="siteId" placeholder="site.com" class="form-control" type="text" />
+                <input id="siteId" placeholder="site.com" class="form-control" type="text" required/>
+                <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
                     <label for="telefoneId" class="control-label">Telefone</label>
-                    <input id="corpo" id="telefoneId" placeholder="(99)9999-9999" class="form-control" type="text" />
-                </div></p>
+                    <input id="telefoneId" placeholder="(99)9999-9999" class="form-control" type="text" required/>
+                    <div class="help-block with-errors"></div>    
+            </div></p>
             <div class="form-group" id="endereco">
                 <label for="enderecoId" class="control-label">Endereço</label>
-                <input id="corpo" id="enderecoId" placeholder="Digite o endereço" class="form-control" type="text" />
+                <input id="enderecoId" placeholder="Digite o endereço" class="form-control" type="text" required/>
+                <div class="help-block with-errors"></div>
             </div>
             
             <div class="form-group">
@@ -95,6 +100,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="javascript/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
 </body>
 
 </html>

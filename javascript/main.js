@@ -47,50 +47,58 @@ function insereLinha(id, nome, nota, site, endereco, telefone){
 
 $('#update-to-list').on('click', (evento) =>{
     evento.preventDefault();
-    $.ajax({
-        type: 'PUT',
-        contentType: 'application/json',
-        url: urlAPI,
-        dataType: 'json',
-        data: formToJSON(),
-        success: function(){
-            $('#alunoTable tr').each(function(){
-                if($(this).find('.action_edit').attr('value')== $('#idHidden').val()){
-                    $(this).find('#nomeIdTb').html($('#nomeId').val());
-                    $(this).find('#notaIdTb').html($('#notaId').val());
-                    $(this).find('#siteIdTb').html($('#siteId').val());
-                    $(this).find('#enderecoIdTb').html($('#enderecoId').val());
-                    $(this).find('#telefoneIdTb').html($('#telefoneId').val());
+    var validator = $("#formAluno").data("bs.validator");
+    validator.validate();
+    if(!validator.isIncomplete()){
+        $.ajax({
+            type: 'PUT',
+            contentType: 'application/json',
+            url: urlAPI,
+            dataType: 'json',
+            data: formToJSON(),
+            success: function(){
+                $('#alunoTable tr').each(function(){
+                    if($(this).find('.action_edit').attr('value')== $('#idHidden').val()){
+                        $(this).find('#nomeIdTb').html($('#nomeId').val());
+                        $(this).find('#notaIdTb').html($('#notaId').val());
+                        $(this).find('#siteIdTb').html($('#siteId').val());
+                        $(this).find('#enderecoIdTb').html($('#enderecoId').val());
+                        $(this).find('#telefoneIdTb').html($('#telefoneId').val());
 
-                    $('#formAluno').get(0).reset();
-                    $('#add-to-list').removeClass('d-none');
-                    $('#update-to-list').addClass('d-none');
-                }
-            })
-        },
-        error: function(jqXHR, textStatus, errorThrown){
-            alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
-        }
-    });
+                        $('#formAluno').get(0).reset();
+                        $('#add-to-list').removeClass('d-none');
+                        $('#update-to-list').addClass('d-none');
+                    }
+                })
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
+            }
+        });
+    }
 });
 
 $('#add-to-list').on('click', (evento) => {
     evento.preventDefault();
-    
-    $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        url: urlAPI,
-        dataType: 'json',
-        data: formToJSON(),
-        success: function(data, textStatus, jqXHR){
+    var validator = $("#formAluno").data("bs.validator");
+    validator.validate();
+    if(!validator.isIncomplete()){
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: urlAPI,
+            dataType: 'json',
+            data: formToJSON(),
+            success: function(data, textStatus, jqXHR){
             insereLinha(data.id, data.nome, data.nota, data.site, data.endereco, data.telefone);
             handler ();
+            $('formAluno').get(0).reset();
         },
-        error: function(jqXHR, textStatus, errorThrown){
-            alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
-        }
-    })
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('Status: ' + textStatus + '\nTipo: ' + errorThrow + '\nMensagem: ' + jqXHR.responseText);
+            }
+        })
+    }
 });
 
 function handler(){
